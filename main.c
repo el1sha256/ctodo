@@ -7,8 +7,6 @@
 
 
 int main(){
-    int rc;
-    char *ERR;
     int is_exit = 1;
     char command[200];
     int gui_state = MAIN_SCREEN;
@@ -23,7 +21,7 @@ int main(){
         }
         //draw_screen(MAIN_SCREEN);
         fgets(command, 200, stdin);
-        printf("%s\n", command);
+        exec_command(command);
     } 
 
     sqlite3_close(db);
