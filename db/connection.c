@@ -18,7 +18,12 @@ sqlite3 *db_connect(const char* filename){
                  "title text               not null,"\
                  "desc  text                       ,"\
                  "date_add int             not null,"\
-                 "date_to_complete int            );";
+                 "date_to_complete int            );"\
+                 "create table if not exists service("\
+                 "id    int primary key not null,"\
+                 "max_id int default 0);"\
+                 "insert into service values(0, 0);";
+
     rc = sqlite3_exec(db, SQL, 0, 0, &exec_err);
     if(rc){
         fprintf(stderr, "SQL error: %s", exec_err);
