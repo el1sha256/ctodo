@@ -4,6 +4,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include"crud.h"
 
 
 enum gui_states {
@@ -35,6 +36,7 @@ int exec_command(char* raw_command){
     sscanf(raw_command, "%s %s", cmd.command, cmd.arg);
     if(!strcmp(cmd.command, "/all")){
         printf("Print All todos\n");
+        get_all();
     }
     else if(!strcmp(cmd.command, "/clear")){
         system("@cls||clear");

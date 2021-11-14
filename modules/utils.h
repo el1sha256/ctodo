@@ -8,6 +8,6 @@ enum gui_states {
 
 void draw_screen(int screen);
 
-int exec_command(char*);
+int exec_command(char*, sqlite3*);
 
 #endif
