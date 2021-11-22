@@ -1,6 +1,9 @@
 #include<sqlite3.h>
 #include<stdio.h>
 #include<stdlib.h>
+#include<sys/stat.h>
+#include<fcntl.h>
+#include<unistd.h>
 
 sqlite3 *db_connect(const char* filename){
     sqlite3 *db;
@@ -21,8 +24,8 @@ sqlite3 *db_connect(const char* filename){
                  "date_to_complete int            );"\
                  "create table if not exists service("\
                  "id    int primary key not null,"\
-                 "max_id int default 0);"\
-                 "insert into service values(0, 0);";
+                 "max_id int default 0);";
+                 //"insert into service values(0, 0);";
 
     rc = sqlite3_exec(db, SQL, 0, 0, &exec_err);
     if(rc){
@@ -33,3 +36,14 @@ sqlite3 *db_connect(const char* filename){
     return db;
 }
 
+
+char *get_db_path(){
+    int path_l = 300;
+    char username[100];
+    getlogin_r(username, sizeof(username));
+    fprintf(stderr, "%s\n", username);
+    char *path = malloc(path_l);
+
+    snprintf(path, path_l, "%s%s%s", "/home/", username, "/.config/ctodo.sqlite3");
+    return path;
+}
