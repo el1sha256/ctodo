@@ -1,5 +1,5 @@
-main: main.c ./db/connection.c ./modules/utils.c ./modules/crud.c ./modules/draw.c
-	gcc -g -Wall -l sqlite3 main.c ./db/connection.c ./modules/utils.c ./modules/crud.c ./modules/draw.c\
+main: main.c ./db/connection.c ./modules/utils.c ./db/crud.c ./modules/draw.c
+	gcc -g -Wall -l sqlite3 main.c ./db/connection.c ./modules/utils.c ./db/crud.c ./modules/draw.c\
  -o main
 
 wc: main.c

@@ -7,7 +7,7 @@ enum gui_states {
     ADD_TASK
 };
 
-void draw_screen(int screen);
+void draw_screen(int screen, sqlite3 *db);
 
 int exec_command(char*, sqlite3*);
 #endif
