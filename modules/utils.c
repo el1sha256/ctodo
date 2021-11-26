@@ -51,25 +51,25 @@ int exec_command(char* raw_command, sqlite3* db){
 
     s_command cmd;
     sscanf(raw_command, "%s %s", cmd.command, cmd.arg);
-    if(!strcmp(cmd.command, "/all")){
+    if(!strcmp(cmd.command, "all")){
         gui_state = ALL_TODOS;
     }
-    else if(!strcmp(cmd.command, "/main")){
+    else if(!strcmp(cmd.command, "main")){
         gui_state = MAIN_SCREEN;
     }
-    else if(!strcmp(cmd.command, "/exit")){
+    else if(!strcmp(cmd.command, "exit")){
         if(!strcmp(cmd.arg, "clear")){
             system("@cls||clear");
         }
         exit(0);
     }
-    else if(!strcmp(cmd.command, "/add")){
+    else if(!strcmp(cmd.command, "add")){
         gui_state = ADD_TASK;
     }
-    else if(!strcmp(cmd.command, "/help")){
+    else if(!strcmp(cmd.command, "help")){
         gui_state = HELP_SCREEN;
     }
-    else if(!strcmp(cmd.command, "/remove")){
+    else if(!strcmp(cmd.command, "remove")){
         remove_task(db, atoi(cmd.arg));
     }
     else{
