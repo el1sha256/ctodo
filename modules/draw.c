@@ -18,11 +18,11 @@ int draw_todo(void *NotUsed, int argc, char **argv, char **ColName){
 
 void draw_main(){
     printf("###  MAIN SCREEN  ###\n\n");
-    printf("/all: See all tasks\n");
-    printf("/add: Add task\n");
-    printf("/remove <id>: Remove task by id\n");
-    printf("/help: View help\n");
-    printf("/exit: Exit from ctodo\n");
+    printf("all: See all tasks\n");
+    printf("add: Add task\n");
+    printf("remove <id>: Remove task by id\n");
+    printf("help: View help\n");
+    printf("exit: Exit from ctodo\n");
 }
 
 void draw_all_todos(sqlite3 *db){
@@ -33,7 +33,7 @@ void draw_all_todos(sqlite3 *db){
 
 void draw_unknown_cmd(){
     printf("###  UNKNOWN COMMAND! ###\n");
-    printf("Type /main to return on main screen\n");
+    printf("Type 'main' to return on main screen\n");
 }
 
 void draw_add_todo(sqlite3 *db){
@@ -53,8 +53,8 @@ void draw_add_todo(sqlite3 *db){
 void draw_help_screen(){
     printf("### USER MANUAL ###\n\n");
 
-    printf("/main: Open main screen\n");
-    printf("/all: View all tasks\n");
-    printf("/exit <arg>: Exit from ctodo, <arg> maybe 'clear',"\
+    printf("main: Open main screen\n");
+    printf("all: View all tasks\n");
+    printf("exit <arg>: Exit from ctodo, <arg> maybe 'clear',"\
             " this is clear screen before exit\n");
 }
