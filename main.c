@@ -13,7 +13,6 @@ int main(){
     sqlite3 *db = db_connect(get_db_path());
     while (1){
         if(screen_update_require){
-            fprintf(stderr, "\n if cond\n");
             draw_screen(gui_state, db);
             screen_update_require = 0;
         }

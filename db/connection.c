@@ -4,11 +4,12 @@
 #include<sys/stat.h>
 #include<fcntl.h>
 #include<unistd.h>
+#include"service_db.h"
 
 sqlite3 *db_connect(const char* filename){
     sqlite3 *db;
-    int rc;
-    char *exec_err = 0;
+    int rc, ct;
+    //char *exec_err = 0;
 
     rc = sqlite3_open(filename, &db);
 
@@ -16,19 +17,8 @@ sqlite3 *db_connect(const char* filename){
         printf("Fail when open connection with db\n;");
         exit(1);
     }
-    char *SQL = "create table if not exists todos("\
-                 "id INTEGER PRIMARY KEY  AUTOINCREMENT,"\
-                 "title text               not null,"\
-                 "desc  text                       ,"\
-                 "date_add integer             not null,"\
-                 "date_to_complete integer            );";
+    ct = db_create_todos_table(db);
 
-    rc = sqlite3_exec(db, SQL, 0, 0, &exec_err);
-    if(rc){
-        fprintf(stderr, "SQL error: %s", exec_err);
-        sqlite3_free(exec_err);
-        exit(1);
-    }
     return db;
 }
 
@@ -36,9 +26,9 @@ sqlite3 *db_connect(const char* filename){
 char *get_db_path(){
     int path_l = 300;
     char username[100];
-    getlogin_r(username, sizeof(username));
-    fprintf(stderr, "%s\n", username);
     char *path = malloc(path_l);
+    getlogin_r(username, sizeof(username));
+//    fprintf(stderr, "%s\n", username);
 
     snprintf(path, path_l, "%s%s%s", "/home/", username, "/.config/ctodo.sqlite3");
     return path;

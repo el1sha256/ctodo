@@ -1,6 +1,4 @@
-main: main.c ./db/connection.c ./modules/utils.c ./db/crud.c ./modules/draw.c
+main: main.c ./db/connection.c ./modules/utils.c ./db/crud.c ./modules/draw.c ./db/service_db.c
 	gcc -g -Wall -l sqlite3 main.c ./db/connection.c ./modules/utils.c ./db/crud.c ./modules/draw.c\
- -o main
+  ./db/service_db.c -o ctodo 
 
-wc: main.c
-	gcc -g -Wall main.c -o wc

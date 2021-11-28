@@ -7,6 +7,7 @@
 #include<sqlite3.h>
 #include"../db/crud.h"
 #include"./draw.h"
+#include"../db/service_db.h"
 
 enum gui_states {
     MAIN_SCREEN = 1,
@@ -70,7 +71,12 @@ int exec_command(char* raw_command, sqlite3* db){
         gui_state = HELP_SCREEN;
     }
     else if(!strcmp(cmd.command, "remove")){
-        remove_task(db, atoi(cmd.arg));
+        if(!strcmp(cmd.arg, "all")){
+            db_delete_todos_table(db);
+            db_create_todos_table(db);
+        }else{
+            remove_task(db, atoi(cmd.arg));
+        }
     }
     else{
         gui_state = UNKNOWN_CMD;
