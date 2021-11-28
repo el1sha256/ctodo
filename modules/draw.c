@@ -9,7 +9,7 @@ int draw_todo(void *NotUsed, int argc, char **argv, char **ColName){
 
     printf("\n");
     printf("id: %s\n", argv[0]);
-    for(int i = 1; i < argc-2; i++){
+    for(int i = 1; i < 3; i++){
         printf("%s: %s", ColName[i],argv[i]);
     }
     printf("\n");
@@ -18,17 +18,24 @@ int draw_todo(void *NotUsed, int argc, char **argv, char **ColName){
 
 void draw_main(){
     printf("###  MAIN SCREEN  ###\n\n");
-    printf("all: See all tasks\n");
+    printf("todos: See uncompleted tasks\n");
+    printf("completed: See completed tasks\n");
     printf("add: Add task\n");
     printf("remove <id>: Remove task by id\n");
+    printf("complete <id>: Complete task by id\n");
     printf("help: View help\n");
     printf("exit: Exit from ctodo\n");
 }
 
-void draw_all_todos(sqlite3 *db){
-    printf("###  ALL TODOS ###\n");
+void draw_uncompleted_todos(sqlite3 *db){
+    printf("### TODOS ###\n");
     //printf("There all todos from db\n");
-    get_all(db, draw_todo);
+    get_all(db, draw_todo, 0);
+}
+
+void draw_completed_todos(sqlite3 *db){
+    printf("###  COMPLETED TODOS ###\n");
+    get_all(db, draw_todo, 1);
 }
 
 void draw_unknown_cmd(){

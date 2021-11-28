@@ -12,7 +12,8 @@
 enum gui_states {
     MAIN_SCREEN = 1,
     HELP_SCREEN,
-    ALL_TODOS,
+    TODOS,
+    COMPLETED_TODOS,
     ADD_TASK,
     UNKNOWN_CMD
 };
@@ -31,8 +32,11 @@ void draw_screen(int screen, sqlite3* db){
         case HELP_SCREEN:
             draw_help_screen();
             break;
-        case ALL_TODOS:
-            draw_all_todos(db);
+        case TODOS:
+            draw_uncompleted_todos(db);
+            break;
+        case COMPLETED_TODOS:
+            draw_completed_todos(db);
             break;
         case ADD_TASK:
             draw_add_todo(db);
@@ -52,8 +56,11 @@ int exec_command(char* raw_command, sqlite3* db){
 
     s_command cmd;
     sscanf(raw_command, "%s %s", cmd.command, cmd.arg);
-    if(!strcmp(cmd.command, "all")){
-        gui_state = ALL_TODOS;
+    if(!strcmp(cmd.command, "todos")){
+        gui_state = TODOS;
+    }
+    else if(!strcmp(cmd.command, "completed")){
+        gui_state = COMPLETED_TODOS;
     }
     else if(!strcmp(cmd.command, "main")){
         gui_state = MAIN_SCREEN;
@@ -69,6 +76,9 @@ int exec_command(char* raw_command, sqlite3* db){
     }
     else if(!strcmp(cmd.command, "help")){
         gui_state = HELP_SCREEN;
+    }
+    else if(!strcmp(cmd.command, "complete")){
+        complete_task(db, atoi(cmd.arg));
     }
     else if(!strcmp(cmd.command, "remove")){
         if(!strcmp(cmd.arg, "all")){

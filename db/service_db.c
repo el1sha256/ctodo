@@ -5,13 +5,14 @@
 
 int db_create_todos_table(sqlite3 *db){
     char *exec_err = 0;
-    int rc;  
+    int rc; 
     char *SQL = "create table if not exists todos("\
-                 "id INTEGER PRIMARY KEY  AUTOINCREMENT,"\
-                 "title text               not null,"\
-                 "desc  text                       ,"\
-                 "date_add integer             not null,"\
-                 "date_to_complete integer            );";
+                 "id integer primary key autoincrement,"\
+                 "title text not null,"\
+                 "desc text,"\
+                 "date_add integer not null,"\
+                 "date_to_complete integer,"\
+                 "is_completed integer);";
 
     rc = sqlite3_exec(db, SQL, 0, 0, &exec_err);
     if(rc){

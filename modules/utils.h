@@ -3,7 +3,7 @@
 
 enum gui_states {
     MAIN_SCREEN = 1,
-    ALL_TODOS,
+    TODOS,
     ADD_TASK
 };
 

@@ -3,7 +3,9 @@
 
 void draw_main();
 
-void draw_all_todos(sqlite3 *db);
+void draw_uncompleted_todos(sqlite3 *db);
+
+void draw_completed_todos(sqlite3 *db);
 
 void draw_unknown_cmd();
 
