@@ -1,5 +1,6 @@
 # ctodo
 TODO implementation on C
+### This version program is implemented only for Unix systems
 
 Install:
 1. cd ~/Downloads
