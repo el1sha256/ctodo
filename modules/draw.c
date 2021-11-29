@@ -23,6 +23,7 @@ void draw_main(){
     printf("add: Add task\n");
     printf("remove <id>: Remove task by id\n");
     printf("complete <id>: Complete task by id\n");
+    printf("main: Return to main screen\n");
     printf("help: View help\n");
     printf("exit: Exit from ctodo\n");
 }

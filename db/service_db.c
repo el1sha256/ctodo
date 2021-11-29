@@ -9,7 +9,7 @@ int db_create_todos_table(sqlite3 *db){
     char *SQL = "create table if not exists todos("\
                  "id integer primary key autoincrement,"\
                  "title text not null,"\
-                 "desc text,"\
+                 "description text,"\
                  "date_add integer not null,"\
                  "date_to_complete integer,"\
                  "is_completed integer);";

@@ -28,7 +28,6 @@ char *get_db_path(){
     char username[100];
     char *path = malloc(path_l);
     getlogin_r(username, sizeof(username));
-//    fprintf(stderr, "%s\n", username);
 
     snprintf(path, path_l, "%s%s%s", "/home/", username, "/.config/ctodo.sqlite3");
     return path;
