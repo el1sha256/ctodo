@@ -6,8 +6,7 @@ Install:
 1. cd ~/Downloads
 2. git clone https://github.com/Ryvfun/ctodo.git
 3. cd ctodo
-4. make
-5. sudo cp ctodo /usr/bin
+4. sudo make
 
 Possible problems
 1. ctodo: command not found
